@@ -44,12 +44,17 @@ body {
 	line-height: 1.7;
 }
 main {
-	width: 720px;
+	width: min(720px, calc(100% - 2rem));
 	max-width: calc(100% - 2em);
 	margin: auto;
 	padding: 3em 1em;
 }
 html { scroll-behavior: smooth; }
+
+html,
+body {
+	overflow-x: hidden;
+}
 
 h1,
 h2,
@@ -157,24 +162,55 @@ hr {
 
 /* Container style */
 .container {
-	width: fit-content;
-	max-width: 1100px;
+    width: min(1100px, calc(100% - 2rem));
     margin: 0 auto;
-    padding: 2% 50px;
-    border-radius: 3%;
-    background-color:rgba(15, 15, 25, 0.8)
+    padding: 2rem 1rem;
+    box-sizing: border-box;
+	background-color:rgba(15, 15, 25, 0.8);
+	border-radius: 3%;
 }
+
+@media (max-width: 900px) {
+
+    .container {
+    width: min(1200px, calc(100% - 2rem));
+	background-color:rgba(15, 15, 25, 0.8);
+	border-radius: 3%;
+    margin: auto;
+}
+
+    .hero-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .hero-image-container::after {
+        top: 10px;
+        left: 10px;
+    }
+
+    .hero-buttons {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+
 
 /* Hero Section */
 
 .hero-image-container {
-    /* Increase these values to make the overall container slightly bigger */
-    width: 350px; 
-    height: 350px;
+    width: min(350px, 80vw);
+    aspect-ratio: 1;
+    height: auto;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
+	margin: 10px;
 }
 
 .profile-pic {
@@ -195,13 +231,27 @@ hr {
 .hero-image-container::after { content: ""; position: absolute; top: 20px; left: 20px; width: 100%; height: 100%; border: 2px solid var(--neon-purple); border-radius: 12px; z-index: 1; transition: 0.3s ease; }
 .hero-image-container:hover::after { transform: translate(5px, 5px); }
 
+@media (max-width: 900px) {
+
+    .hero-content {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+
+    .hero-image-container {
+        margin-bottom: 2rem;
+    }
+	
+
+}
+
 section { padding: 30px 0; }
 .section-heading { font-size: 3rem; margin-bottom: 50px; display: flex; align-items: center; gap: 15px; }
 .section-heading span { color: var(--neon-purple); font-family: var(--font-mono); font-size: 1.2rem; }
 .section-heading::after { content: ""; height: 1px; background: var(--border-dim); flex-grow: 1; margin-left: 20px; }
 	/* --- Hero Section --- */
 .hero-section { min-height: 80vh; display: flex; align-items: center; }
-.hero-content { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+.hero-content { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
 .hero-text { flex: 1; }
 .terminal-prompt { font-size:2.0rem; color: var(--neon-purple); font-family: var(--font-mono); margin-bottom: 20px; margin-top:0px }
 .hero-title { font-size: 4.5rem; font-weight: 800; margin: 0 0 10px 0; line-height: 1.1; color: white;}
@@ -224,6 +274,22 @@ section { padding: 30px 0; }
 .stat-box i { font-size: 2rem; color: var(--neon-purple); margin-bottom: 15px; }
 .stat-box h3 { margin: 0 0 5px 0; font-size: 1.2rem; }
 .stat-box p { margin: 0; color: var(--text-dim); font-size: 0.9rem; }
+
+@media (max-width: 900px) {
+
+    .about-grid {
+        display: flex;
+        flex-direction: column;
+		align-items: center;
+    }
+
+    .about-stats {
+		flex-direction: row;
+		gap: 0.5%;
+        order: -1;
+    }
+
+}
 
 
 /* --- Expertise Section --- */
@@ -272,6 +338,12 @@ section { padding: 30px 0; }
 .pub-desc { color: var(--text-dim); font-size: 0.95rem; line-height: 1.6; margin: 0; }
 .pub-link { display: flex; align-items: center; gap: 8px; color: var(--text-main); background: #111; border: 1px solid #222; padding: 8px 16px; border-radius: 6px; font-size: 0.9rem; font-family: var(--font-mono); white-space: nowrap; }
 .pub-link:hover { background: var(--neon-purple-dim); border-color: var(--neon-purple); color: var(--neon-purple); }
+
+@media (max-width: 900px) {
+	.pub-link{
+		text-wrap: initial;
+	}
+}
 
 /* Blog Cards */
 
